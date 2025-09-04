@@ -12,6 +12,50 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
+/* Default: Hide both menus */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(-10px);
+  opacity: 0;
+  z-index: 50;
+}
+
+
+#mobile-menu.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#hamburger-menu span {
+  transition: all 0.3s ease;
+}
+
+#hamburger-menu.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+#hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger-menu.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+@media (min-width: 768px) {
+  #hamburger-menu,
+  #mobile-menu {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 767px) {
+  #hamburger-menu {
+    display: flex !important;
+  }
+}
 
     .container {
       width: 90%;
@@ -117,56 +161,59 @@
 </head>
 
 <body>
-<nav class="relative mb-20">
-  <div class="navbar flex justify-between items-center mt-5 px-4">
-    <div class="logo">
-      <img src="./src/img/logo.jpg" alt="Logo" class="w-34">
-    </div>
+ <nav class="relative mb-20">
+        <div class="navbar flex justify-between items-center mt-5 px-4 max-w-6xl mx-auto fixed z-1000 top-0 left-0 right-0 bottom-0 shadow-2xs">
+            <div class="logo">
+                <!-- Placeholder logo -->
+                <div class="w-28 bg-blue-600 rounded flex items-center justify-center text-white font-bold">
+                    <img src="./src/img/logo.jpg" alt="" class="w-lg">
+                </div>
+            </div>
 
-    <div class="hidden md:flex items-center gap-8 font-semibold">
-      <a href="#home" class="hover:font-bold">Home</a>
-      <a href="#services" class="hover:font-bold">Services</a>
-      <a href="#contact" class="hover:font-bold">Contact</a>
-      <a href="#support" class="hover:font-bold">Support</a>
-      <button class="bg-black text-white p-2 px-9 font-semibold rounded-xl ml-4">
-        Sign Up
-      </button>
-    </div>
+            <div class="hidden md:flex items-center gap-8 font-semibold ">
+                <a href="#home" class="hover:font-bold transition-all">Home</a>
+                <a href="#services" class="hover:font-bold transition-all">Services</a>
+                <a href="#contact" class="hover:font-bold transition-all">Contact</a>
+                <a href="#support" class="hover:font-bold transition-all">Support</a>
+                <button class="bg-black text-white p-2 px-9 font-semibold rounded-xl ml-4 hover:bg-gray-800 transition-colors">
+                    Sign Up
+                </button>
+            </div>
 
-    <button
-      id="hamburger-menu"
-      class="md:hidden flex flex-col justify-between w-6 h-5"
-      aria-label="Toggle navigation menu"
-      aria-expanded="false"
-    >
-      <span class="w-6 h-0.5 bg-gray-700"></span>
-      <span class="w-6 h-0.5 bg-gray-700"></span>
-      <span class="w-6 h-0.5 bg-gray-700"></span>
-    </button>
-  </div>
+            <button
+                id="hamburger-menu"
+                class="md:hidden flex flex-col justify-between w-6 h-5 relative z-50"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+            >
+                <span class="w-6 h-0.5 bg-gray-700"></span>
+                <span class="w-6 h-0.5 bg-gray-700"></span>
+                <span class="w-6 h-0.5 bg-gray-700"></span>
+            </button>
+        </div>
 
-  <ul
-    id="mobile-menu"
-    class="nav-menu hidden flex-col **items-center** text-center font-bold bg-white shadow-md absolute top-full left-0 w-full"
-    role="menubar"
-  >
-    <li><a href="#home" class="nav-link block py-3" role="menuitem">Home</a></li>
-    <li><a href="#services" class="nav-link block py-3" role="menuitem">Services</a></li>
-    <li><a href="#contact" class="nav-link block py-3" role="menuitem">Contact</a></li>
-    <li><a href="#support" class="nav-link block py-3" role="menuitem">Support</a></li>
-    <li>
-      <button class="sign-up-btn bg-black text-white px-6 py-2 rounded-md **my-4**">
-        Sign Up
-      </button>
-    </li>
-  </ul>
-</nav>
+        <ul
+            id="mobile-menu"
+            class="nav-menu hidden flex-col items-center text-center font-bold bg-white shadow-md absolute top-full left-0 w-full py-2"
+            role="menubar"
+        >
+            <li class="w-full"><a href="#home" class="nav-link block py-3 hover:bg-gray-100 transition-colors" role="menuitem">Home</a></li>
+            <li class="w-full"><a href="#services" class="nav-link block py-3 hover:bg-gray-100 transition-colors" role="menuitem">Services</a></li>
+            <li class="w-full"><a href="#contact" class="nav-link block py-3 hover:bg-gray-100 transition-colors" role="menuitem">Contact</a></li>
+            <li class="w-full"><a href="#support" class="nav-link block py-3 hover:bg-gray-100 transition-colors" role="menuitem">Support</a></li>
+            <li class="w-full py-3">
+                <button class="sign-up-btn bg-black text-white px-6 py-2 rounded-md my-4 hover:bg-gray-800 transition-colors">
+                    Sign Up
+                </button>
+            </li>
+        </ul>
+    </nav>
 
 
 
 
   <main>
-    <section class="home">
+    <section class="home" id="home">
       <div class="home flex container justify-center align-middle ">
         <div class="left mt-3">
           <h1 class="text-7xl font-semibold">Interior Design</h1>
@@ -200,7 +247,7 @@
         </div>
       </div>
     </section>
-    <section class="OurService">
+    <section class="OurService" id="services">
       <div class="service container mt-20 mb-20">
         <h1 class=" text-3xl font-semibold ms-8 mb-20">Our Services</h1>
         <div class="services container flex justify-center align-middle text-left gap-2">
@@ -366,7 +413,7 @@
   </div>
 </section>
 
-    <section class="bg-white text-center py-16 px-4 mt-20">
+    <section class="bg-white text-center py-16 px-4 mt-20" id="contact">
       <h2 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter<br>for Design Insights</h2>
       <p class="text-gray-500 max-w-xl mx-auto mb-8">
         Be the first to discover trends, inspirations, and special offers as we bring the world of design directly to your inbox
@@ -385,7 +432,7 @@
       </div>
     </section>
   </main>
-  <footer class="bg-black text-white py-12 px-4">
+  <footer class="bg-black text-white py-12 px-4" id="support">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 class="text-2xl font-bold mb-4">VivaDecor</h3>
